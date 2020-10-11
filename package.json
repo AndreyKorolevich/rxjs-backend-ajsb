@@ -1,0 +1,26 @@
+{
+  "name": "ahj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "forever server.js",
+    "watch": "forever -w server.js"
+  },
+  "author": "Andrew",
+  "license": "ISC",
+  "dependencies": {
+    "faker": "^5.1.0",
+    "forever": "^3.0.2",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-router": "^8.0.8",
+    "koa-static": "^5.0.0",
+    "moment": "^2.29.1",
+    "uuid": "^8.3.0"
+  },
+  "engines": {
+    "node": "11.x"
+  }
+}
