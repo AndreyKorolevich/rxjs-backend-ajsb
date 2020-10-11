@@ -61,34 +61,39 @@ router.get('/messages/unread', async (ctx, next) => {
 });
 
 router.get('/posts/latest', async (ctx, next) => {
+
+  const posts = [];
+  for (let i = 0; i < 5; i++) {
+    posts.push({
+      post_id: uuidv4(),
+      author: faker.name.findName(),
+      avatar: faker.image.avatar(),
+      content: faker.image.nature(),
+      created: [moment().format('LT'), moment().format('L')]
+    })
+  }
+
   ctx.response.body = {
-    post_id: uuidv4(),
-    author: faker.name.findName(),
-    avatar: faker.image.avatar(),
-    content: faker.image.nature(),
-    created: [moment().format('LT'), moment().format('L')]
+    posts
   }
 });
 
 router.get('/posts/comments/latest', async (ctx, next) => {
   const { post_id } = ctx.request.query;
+  const comments = [];
 
+  for (let i = 0; i < 3; i++) {
+    comments.push({
+      author: faker.name.findName(),
+      avatar: faker.image.avatar(),
+      message: faker.lorem.sentence(),
+      date: [moment().format('LT'), moment().format('L')]
+    })
+
+  }
   ctx.response.body = {
     post_id,
-    comments: [
-      {
-        author: faker.name.findName(),
-        avatar: faker.image.avatar(),
-        message: faker.lorem.sentence(),
-        date: [moment().format('LT'), moment().format('L')]
-      },
-      {
-        author: faker.name.findName(),
-        avatar: faker.image.avatar(),
-        message: faker.lorem.sentence(),
-        date: [moment().format('LT'), moment().format('L')]
-      }
-    ]
+    comments,
   }
 });
 
